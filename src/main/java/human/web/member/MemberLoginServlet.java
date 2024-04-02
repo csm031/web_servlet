@@ -1,9 +1,12 @@
 package human.web.member;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class MemberLoginServlet extends HttpServlet {
@@ -31,8 +34,18 @@ public class MemberLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 //세션객체에 회원정보를 member라는 이름으로 저장함: setAttribute(String, Object)
                 session.setAttribute("member",dto);
+                //메인페이지를 새로 요청하기
+                response.sendRedirect("../index.jsp");
+            } else { // 로그인 실패 시
+                //request객체에 실패 메시지를 저장하기
+                request.setAttribute("msg","아이디나 비밀번호가 일치하지 않습니다.");
+                //request객체를 유지하면서 다른 페이지로 이동하기: forward()
+                //RequestDispatcher객체의 forward()메소드 이용
+                RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+                dispatcher.forward(request,response);
             }
-        } catch (SQLException e) {
+
+        } catch (SQLException | ServletException | IOException e) {
             System.out.println("로그인 처리 중 예외 발생");
             e.printStackTrace();
 

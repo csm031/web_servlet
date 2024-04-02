@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class MemberDAO extends DBCon {
 
+    private DBCon dbCon = new DBCon();
     public int join(MemberDTO dto) throws SQLException {
         int result = 0; // 회원가입 실패 시 결과값
 
