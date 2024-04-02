@@ -1,6 +1,7 @@
 package human.web.member;
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MemberDAO extends DBCon {
@@ -23,5 +24,49 @@ public class MemberDAO extends DBCon {
         result = pstmt.executeUpdate(); //데이터베이스에 적용된 row 수를 반환함
 
         return result;
+    }
+
+    public int login(String member_id, String member_pw) throws SQLException {
+        //아이디와 비밀번호가 같은 데이터의 개수를 count()함수를 이용해서 가져옴
+        //로그인 성공 시 1 반환, 실패 시 0 반환
+        int result = 0;
+        String sql = "select count(*) from tb_member where member_id = ? and member_pw = ?";
+        pstmt = conn.prepareStatement(sql);
+
+        pstmt.setString(1,member_id);
+        pstmt.setString(2,member_pw);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            result = rs.getInt(1);
+        }
+        return result;
+    }
+
+    public MemberDTO getMember(String member_id) throws SQLException {
+        MemberDTO dto = null;
+
+        //아이디를 이용해서 회원정보를 가져오기
+        String sql = "select * from tb_member where member_id = ?";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,member_id);
+        rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            dto = new MemberDTO();
+            dto.setM_idx(rs.getInt("m_idx"));
+            dto.setMember_id(rs.getString("member_id"));
+            dto.setMember_pw(rs.getString("member_pw"));
+            dto.setMember_name(rs.getString("member_name"));
+            dto.setNickname(rs.getString("nickname"));
+            dto.setHandphone(rs.getString("handphone"));
+            dto.setEmail(rs.getString("email"));
+            dto.setGrade(rs.getInt("grade"));
+            dto.setReg_date(rs.getDate("reg_date"));
+            dto.setUpdate_date(rs.getDate("update_date"));
+            dto.setMember_status(rs.getInt("member_status"));
+        }
+        return dto;
     }
 }

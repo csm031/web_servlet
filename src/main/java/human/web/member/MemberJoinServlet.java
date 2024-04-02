@@ -32,11 +32,16 @@ public class MemberJoinServlet extends HttpServlet {
             // 회원정보 입력 실패시 회원가입페이지(join.jsp)로 이동하도록 함
 
             //페이지의 이동: response 객체나 dispatcher 객체를 이용
-
+            //페이지 재요청: sendRedirect()
+            //기존의 요청을 유지하면서 페이지 이동: 포워드, forward()
 
             if (result == 1) { //회원가입 성공
 
+                response.sendRedirect("../index.jsp");
+
             } else { // 회원가입 실패
+
+                response.sendRedirect("join.jsp");
 
             }
 

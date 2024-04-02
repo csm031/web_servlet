@@ -10,9 +10,11 @@ public class DBCon {
 
     public DBCon() {
         try {
-            Class.forName("Oracle.jdbc.OracleDriver");// 드라이버 로드
+            Class.forName("oracle.jdbc.OracleDriver");// 드라이버 로드
             String url = "jdbc:oracle:thin:@localhost:1521:xe"; // DB Server URL
-            conn = DriverManager.getConnection(url);
+            String id = "web_dev";
+            String pw = "1234";
+            conn = DriverManager.getConnection(url,id,pw);
             System.out.println("DB 연결 성공");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("DB 연결 실패");
