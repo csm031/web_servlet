@@ -20,7 +20,7 @@
 %>
 <!-- 회원에게 보여지는 화면 -->
 <%= dto.getNickname()%>님<br> <!--JSP페이지에서 자바소스 코드의 값을 출력하는데 사용되는 스크립트 요소: 표현식 -->
-<a href="memebr/update.jsp">회원정보변경</a><br>
+<a href="member/update.jsp">회원정보변경</a><br>
 <a href="#">로그아웃</a><br>
 <%
 } else { //비회원인 경우

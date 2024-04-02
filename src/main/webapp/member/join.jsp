@@ -2,6 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        input{
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        input [type=submit]{
+            width: 100px;
+            height: 50px;
+            margin-top: 20px;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>회원가입</title>
 </head>

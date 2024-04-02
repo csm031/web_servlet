@@ -13,10 +13,10 @@ public class DBCon {
             Class.forName("oracle.jdbc.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521:xe";//DB Server에 대한 URL
             con = DriverManager.getConnection(url, "web_dev", "1234");
-            System.out.println("DB 연결 성공");
+            System.out.println("DB ok");
 
         } catch (Exception e) {
-            System.out.println("DB 연결 실패");
+            System.out.println("DB error");
             e.printStackTrace();
         }
     }

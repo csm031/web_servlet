@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 @WebServlet("/member/memberLogin")
 public class MemberLoginServlet extends HttpServlet {
@@ -15,7 +16,8 @@ public class MemberLoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     //로그인을 처리하는 메소드
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
         //JSP페이지에서 전달된 아이디와 비밀번호 가져오기
         String member_id = request.getParameter("member_id");
         String member_pw = request.getParameter("member_pw");

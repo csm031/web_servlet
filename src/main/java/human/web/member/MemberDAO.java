@@ -72,4 +72,48 @@ public class MemberDAO extends DBCon {
         }
         return dto;
     }
+
+    public int update(MemberDTO dto) throws SQLException {
+        int result = 0; //회원정보 변경 실패 시 결과값
+
+        String sql = "update tb_member set member_pw = ?, member_name = ?, nickname=?, " +
+                "handphone = ?, email=? where m_idx = ?";
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, dto.getMember_pw());
+        pstmt.setString(2, dto.getMember_name());
+        pstmt.setString(3, dto.getNickname());
+        pstmt.setString(4, dto.getHandphone());
+        pstmt.setString(5, dto.getEmail());
+        pstmt.setInt(6, dto.getM_idx());
+
+        result = pstmt.executeUpdate();
+
+        return result;
+    }
+    public MemberDTO getMember(int m_idx) throws SQLException {
+        MemberDTO dto = null;
+
+        //회원정보를 이용해서 회원정보를 가져오기
+        String sql = "select * from tb_member where M_IDX = ?";
+        pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, m_idx);
+
+        rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            dto = new MemberDTO();
+            dto.setM_idx(rs.getInt("m_idx"));
+            dto.setMember_id(rs.getString("member_id"));
+            dto.setMember_pw(rs.getString("member_pw"));
+            dto.setMember_name(rs.getString("member_name"));
+            dto.setNickname(rs.getString("nickname"));
+            dto.setHandphone(rs.getString("handphone"));
+            dto.setEmail(rs.getString("email"));
+            dto.setGrade(rs.getInt("grade"));
+            dto.setReg_date(rs.getDate("reg_date"));
+            dto.setUpdate_date(rs.getDate("update_date"));
+            dto.setMember_status(rs.getInt("member_status"));
+        }
+        return dto;
+    }
 }
