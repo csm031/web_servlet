@@ -4,19 +4,18 @@ import java.sql.*;
 
 public class DBCon {
 
-    protected Connection conn;
+    protected Connection con;
     protected PreparedStatement pstmt;
     protected ResultSet rs;
 
     public DBCon() {
         try {
-            Class.forName("oracle.jdbc.OracleDriver");// 드라이버 로드
-            String url = "jdbc:oracle:thin:@localhost:1521:xe"; // DB Server URL
-            String id = "web_dev";
-            String pw = "1234";
-            conn = DriverManager.getConnection(url,id,pw);
+            Class.forName("oracle.jdbc.OracleDriver");
+            String url = "jdbc:oracle:thin:@localhost:1521:xe";//DB Server에 대한 URL
+            con = DriverManager.getConnection(url, "web_dev", "1234");
             System.out.println("DB 연결 성공");
-        } catch (ClassNotFoundException | SQLException e) {
+
+        } catch (Exception e) {
             System.out.println("DB 연결 실패");
             e.printStackTrace();
         }
@@ -24,19 +23,20 @@ public class DBCon {
 
     public void close() {
         try {
-            if (conn != null) {
-                conn.close();
+
+            if(con != null) {
+                con.close();
             }
-            if (pstmt != null) {
+            if(pstmt != null) {
                 pstmt.close();
             }
-            if (rs != null) {
+            if(rs != null) {
                 rs.close();
             }
-        } catch (SQLException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }

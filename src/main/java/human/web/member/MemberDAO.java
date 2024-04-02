@@ -5,15 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MemberDAO extends DBCon {
-
-    private DBCon dbCon = new DBCon();
+    public MemberDAO() {
+        super();
+    }
     public int join(MemberDTO dto) throws SQLException {
         int result = 0; // 회원가입 실패 시 결과값
 
         //회원가입정보를 저장하기 위해 SQL구문을 정의함
         String sql = "insert into tb_member (m_idx, member_id, member_pw, member_name, "
                 + "nickname, handphone, email) values(member_seq.nextval, ?, ?, ?, ?, ?, ?)";
-        pstmt = conn.prepareStatement(sql);
+        pstmt = con.prepareStatement(sql);
 
         pstmt.setString(1,dto.getMember_id());
         pstmt.setString(2,dto.getMember_pw());
@@ -32,7 +33,7 @@ public class MemberDAO extends DBCon {
         //로그인 성공 시 1 반환, 실패 시 0 반환
         int result = 0;
         String sql = "select count(*) from tb_member where member_id = ? and member_pw = ?";
-        pstmt = conn.prepareStatement(sql);
+        pstmt = con.prepareStatement(sql);
 
         pstmt.setString(1,member_id);
         pstmt.setString(2,member_pw);
@@ -50,8 +51,9 @@ public class MemberDAO extends DBCon {
 
         //아이디를 이용해서 회원정보를 가져오기
         String sql = "select * from tb_member where member_id = ?";
-        pstmt = conn.prepareStatement(sql);
+        pstmt = con.prepareStatement(sql);
         pstmt.setString(1,member_id);
+
         rs = pstmt.executeQuery();
 
         if (rs.next()) {
