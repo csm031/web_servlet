@@ -23,6 +23,7 @@
     <facet type="web" name="Web2">
       <configuration>
         <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/web2/WEB-INF/web.xml" />
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
@@ -44,5 +45,6 @@
     <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="jsp-api" level="project" />
+    <orderEntry type="library" name="ojdbc11" level="project" />
   </component>
 </module>
