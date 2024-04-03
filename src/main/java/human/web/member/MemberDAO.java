@@ -140,6 +140,8 @@ public class MemberDAO extends DBCP {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            close();
         }
         return dto;
     }
