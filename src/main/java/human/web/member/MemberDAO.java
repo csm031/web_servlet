@@ -8,6 +8,7 @@ public class MemberDAO extends DBCon {
     public MemberDAO() {
         super();
     }
+
     public int join(MemberDTO dto) throws SQLException {
         int result = 0; // 회원가입 실패 시 결과값
 
@@ -16,12 +17,12 @@ public class MemberDAO extends DBCon {
                 + "nickname, handphone, email) values(member_seq.nextval, ?, ?, ?, ?, ?, ?)";
         pstmt = con.prepareStatement(sql);
 
-        pstmt.setString(1,dto.getMember_id());
-        pstmt.setString(2,dto.getMember_pw());
-        pstmt.setString(3,dto.getMember_name());
-        pstmt.setString(4,dto.getNickname());
-        pstmt.setString(5,dto.getHandphone());
-        pstmt.setString(6,dto.getEmail());
+        pstmt.setString(1, dto.getMember_id());
+        pstmt.setString(2, dto.getMember_pw());
+        pstmt.setString(3, dto.getMember_name());
+        pstmt.setString(4, dto.getNickname());
+        pstmt.setString(5, dto.getHandphone());
+        pstmt.setString(6, dto.getEmail());
 
         result = pstmt.executeUpdate(); //데이터베이스에 적용된 row 수를 반환함
 
@@ -32,11 +33,11 @@ public class MemberDAO extends DBCon {
         //아이디와 비밀번호가 같은 데이터의 개수를 count()함수를 이용해서 가져옴
         //로그인 성공 시 1 반환, 실패 시 0 반환
         int result = 0;
-        String sql = "select count(*) from tb_member where member_id = ? and member_pw = ?";
+        String sql = "select count(*) from tb_member where member_id = ? and member_pw = ? and MEMBER_STATUS = 1";
         pstmt = con.prepareStatement(sql);
 
-        pstmt.setString(1,member_id);
-        pstmt.setString(2,member_pw);
+        pstmt.setString(1, member_id);
+        pstmt.setString(2, member_pw);
 
         ResultSet rs = pstmt.executeQuery();
 
@@ -52,7 +53,7 @@ public class MemberDAO extends DBCon {
         //아이디를 이용해서 회원정보를 가져오기
         String sql = "select * from tb_member where member_id = ?";
         pstmt = con.prepareStatement(sql);
-        pstmt.setString(1,member_id);
+        pstmt.setString(1, member_id);
 
         rs = pstmt.executeQuery();
 
@@ -90,6 +91,7 @@ public class MemberDAO extends DBCon {
 
         return result;
     }
+
     public MemberDTO getMember(int m_idx) throws SQLException {
         MemberDTO dto = null;
 
@@ -115,5 +117,24 @@ public class MemberDAO extends DBCon {
             dto.setMember_status(rs.getInt("member_status"));
         }
         return dto;
+    }
+
+    public int cancel(int m_idx) throws SQLException {
+        int result = 0; // 회원탈퇴 실패 시 결과값
+        try {
+            //회원탈퇴 요청한 회원의 회원상태를 -1로 변경하기
+            String sql = "update tb_member set MEMBER_STATUS = -1  where M_IDX = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, m_idx);
+
+            result = pstmt.executeUpdate();
+            //로그인 처리 메소드의 SQL문에 회원상태를 조건으로 추가해줌
+
+        } catch (SQLException e) {
+            System.out.println("회원탈퇴 처리 시 예외 발생");
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

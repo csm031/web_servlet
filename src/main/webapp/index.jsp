@@ -18,10 +18,19 @@
     if (dto != null) {
 %>
 <!-- 회원에게 보여지는 화면 -->
-<%= dto.getNickname()%>님<br> <!--JSP페이지에서 자바소스 코드의 값을 출력하는데 사용되는 스크립트 요소: 표현식 -->
+<%= dto.getNickname()%>님 환영합니다.<br> <!--JSP페이지에서 자바소스 코드의 값을 출력하는데 사용되는 스크립트 요소: 표현식 -->
 <a href="member/update.jsp">회원정보변경</a><br>
+<!-- 로그아웃은 별도의 화면을 필요로 하지 않기 때문에 바로 서버에 URL로 로그아웃 요청함 (get 방식)-->
 <a href="member/memberLogOut">로그아웃</a><br>
+
+<a href="javascript:cancel();">회원탈퇴</a>
 <%
+    //회원정보 탈퇴 실패 시 메시지 출력
+    String msg = null;
+    msg = (String) request.getAttribute("msg");
+    if (msg != null) {
+        out.println("<p>" + msg + "</p>");
+    }
 } else { //비회원인 경우
 %>
 <!--비회원에게 보여지는 화면-->
@@ -32,6 +41,18 @@
     }
 %>
 
+<script>
+    cancel = () => {    // 회원 탈퇴에 대한 처리 함수
+                        // confirm 창에 확인을 클릭하면 true, 취소를 클릭하면 false 반환
+        const answer = confirm("정말 회원탈퇴를 하시겠습니까?")
+        // 개발자 모드에서 콘솔에서 answer 확인: console.log()
+        console.log("answer :" + answer);
 
+        if (answer) {
+            //서버로 회원탈퇴 요청을 보냄 (get 방식)
+            location.href = "member/memberCancel";
+        }
+    };
+</script>
 </body>
 </html>
