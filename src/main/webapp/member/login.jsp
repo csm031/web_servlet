@@ -19,7 +19,7 @@
     <title>로그인</title>
 </head>
 <body>
-<form method="post" action="memberLogin" name="frm_Login">
+<form method="post" action="loginProcess.jsp" name="frm_Login">
     <input type="text" name="member_id" placeholder="아이디"> <br>
     <input type="password" name="member_pw" placeholder="비밀번호" > <br>
     <input type="submit" value="로그인">

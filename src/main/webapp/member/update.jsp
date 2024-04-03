@@ -26,7 +26,7 @@
     MemberDTO dto = (MemberDTO) session.getAttribute("member");
     //각각의 input양식에 값을 출력하기 위해 표현식 사용
 %>
-<form method="post" action="memberUpdate" name="frm_update">
+<form method="post" action="updateProcess.jsp" name="frm_update">
     <input type="hidden" name="m_idx" value="<%=dto.getM_idx()%>">
     <input type="text" name="member_id" value="<%= dto.getMember_id()%>" disabled><br>
     <input type="password" name="member_pw" value="<%=dto.getMember_pw()%>"><br>

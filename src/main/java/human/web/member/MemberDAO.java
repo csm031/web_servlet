@@ -30,8 +30,6 @@ public class MemberDAO extends DBCP {
             result = pstmt.executeUpdate(); //데이터베이스에 적용된 row 수를 반환함
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            close();
         }
 
         return result;
@@ -87,8 +85,6 @@ public class MemberDAO extends DBCP {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            close();
         }
         //아이디를 이용해서 회원정보를 가져오기
 
@@ -112,8 +108,6 @@ public class MemberDAO extends DBCP {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            close();
         }
 
 
@@ -146,8 +140,6 @@ public class MemberDAO extends DBCP {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            close();
         }
         return dto;
     }

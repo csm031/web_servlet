@@ -6,6 +6,7 @@
 
 //회원가입을 처리
 //6개의 회원정보를 저장할 수 있는 객체 필요: DTO(Data Transfer Object) - MemberDTO
+request.setCharacterEncoding("UTF-8");
 MemberDTO dto = new MemberDTO();
 dto.setMember_id(request.getParameter("member_id"));
 dto.setMember_pw(request.getParameter("member_pw"));
