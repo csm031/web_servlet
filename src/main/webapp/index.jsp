@@ -50,7 +50,7 @@
 
         if (answer) {
             //서버로 회원탈퇴 요청을 보냄 (get 방식)
-            location.href = "member/memberCancel";
+            location.href = "member/cancelProcess.jsp";
         }
     };
 </script>
