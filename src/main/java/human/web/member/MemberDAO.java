@@ -10,7 +10,7 @@ public class MemberDAO extends DBCon {
     }
 
     public int join(MemberDTO dto) throws SQLException {
-        int result = 0; // 회원가입 실패 시 결과값
+        int result; // 회원가입 실패 시 결과값
 
         //회원가입정보를 저장하기 위해 SQL구문을 정의함
         String sql = "insert into tb_member (m_idx, member_id, member_pw, member_name, "
@@ -75,7 +75,7 @@ public class MemberDAO extends DBCon {
     }
 
     public int update(MemberDTO dto) throws SQLException {
-        int result = 0; //회원정보 변경 실패 시 결과값
+        int result; //회원정보 변경 실패 시 결과값
 
         String sql = "update tb_member set member_pw = ?, member_name = ?, nickname=?, " +
                 "handphone = ?, email=? where m_idx = ?";

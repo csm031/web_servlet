@@ -26,7 +26,7 @@
 <a href="javascript:cancel();">회원탈퇴</a>
 <%
     //회원정보 탈퇴 실패 시 메시지 출력
-    String msg = null;
+    String msg;
     msg = (String) request.getAttribute("msg");
     if (msg != null) {
         out.println("<p>" + msg + "</p>");
