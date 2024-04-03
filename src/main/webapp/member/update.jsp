@@ -11,7 +11,7 @@
             margin: 5px;
         }
 
-        input [type=submit] {
+        input [type=submit], input[type=button] {
             width: 100px;
             height: 50px;
             margin-top: 20px;
@@ -35,7 +35,7 @@
     <input type="text" name="handphone" value="<%=dto.getHandphone()%>"><br>
     <input type="text" name="email" value="<%=dto.getEmail()%>"><br>
     <input type="submit" value="수정하기">
-    <input type="reset" value="취소하기">
+    <input type="button" value="취소하기" onclick="location.href='../index.jsp'">
 </form>
 <%
     String msg = null;

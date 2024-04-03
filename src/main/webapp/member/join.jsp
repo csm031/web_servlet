@@ -31,7 +31,7 @@
     <input type="text" name="handphone" placeholder="핸드폰번호"><br>
     <input type="text" name="email" placeholder="이메일"><br>
     <input type="submit" value="가입하기">
-    <input type="reset" value="취소하기">
+    <input type="button" value="취소하기" onclick="location.href='../index.jsp'">
 </form>
 </body>
 </html>

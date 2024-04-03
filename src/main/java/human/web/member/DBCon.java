@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DBCon {
 
-    protected Connection con;
+    protected Connection conn;
     protected PreparedStatement pstmt;
     protected ResultSet rs;
 
@@ -12,7 +12,7 @@ public class DBCon {
         try {
             Class.forName("oracle.jdbc.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521:xe";//DB Server에 대한 URL
-            con = DriverManager.getConnection(url, "web_dev", "1234");
+            conn = DriverManager.getConnection(url, "web_dev", "1234");
             System.out.println("DB ok");
 
         } catch (Exception e) {
@@ -24,8 +24,8 @@ public class DBCon {
     public void close() {
         try {
 
-            if(con != null) {
-                con.close();
+            if(conn != null) {
+                conn.close();
             }
             if(pstmt != null) {
                 pstmt.close();

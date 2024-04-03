@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.Serial;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 @WebServlet("/member/memberLogin")
 public class MemberLoginServlet extends HttpServlet {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     //로그인을 처리하는 메소드
@@ -51,7 +53,6 @@ public class MemberLoginServlet extends HttpServlet {
         } catch (SQLException | ServletException | IOException e) {
             System.out.println("로그인 처리 중 예외 발생");
             e.printStackTrace();
-
         }
     }
 }
