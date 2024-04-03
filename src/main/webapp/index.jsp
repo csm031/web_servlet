@@ -1,7 +1,6 @@
-<%@ page import="human.web.member.MemberDAO" %>
 <%@ page import="human.web.member.MemberDTO" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html lang="ko">
 <head>
     <title>메인페이지</title>
 </head>
