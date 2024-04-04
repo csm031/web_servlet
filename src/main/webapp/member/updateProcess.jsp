@@ -1,26 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page import="human.web.member.*" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 
+<jsp:useBean id="dto" class="human.web.member.MemberDTO" />
+
+<jsp:setProperty name="dto" property="*" />
 <%
     //스크립트릿 : 서블릿으로 변환될 경우 _jspService()메소드 내에 포함되는 내용
 
 //회원정보 변경 처리
 //6개의 회원정보를 저장할 수 있는 객체 필요: DTO(Data Transfer Object) - MemberDTO
-    request.setCharacterEncoding("UTF-8");
+  /*  request.setCharacterEncoding("UTF-8");
     MemberDTO dto = new MemberDTO();
     String m_idx = request.getParameter("m_idx");
     if (m_idx != null && !m_idx.isEmpty()) {
         dto.setM_idx(Integer.parseInt(m_idx));
-    } else {
-        // m_idx가 null이거나 빈 문자열일 때 처리할 코드를 여기에 작성하세요.
     }
     dto.setMember_pw(request.getParameter("member_pw"));
     dto.setMember_name(request.getParameter("member_name"));
     dto.setNickname(request.getParameter("nickname"));
     dto.setHandphone(request.getParameter("handphone"));
     dto.setEmail(request.getParameter("email"));
-
+*/
 //MemberDAO를 이용해서 회원정보 변경 처리하기
     MemberDAO dao = new MemberDAO();
 

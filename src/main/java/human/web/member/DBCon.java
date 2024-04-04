@@ -11,7 +11,7 @@ public class DBCon {
     public DBCon() {
         try {
             Class.forName("oracle.jdbc.OracleDriver");
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";//DB Server에 대한 URL
+            String url = "jdbc:oracle:thin:@localhost:1521:xe";
             conn = DriverManager.getConnection(url, "web_dev", "1234");
             System.out.println("DB ok");
 
