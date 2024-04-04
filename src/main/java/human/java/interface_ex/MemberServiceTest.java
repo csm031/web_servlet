@@ -1,6 +1,13 @@
 package human.java.interface_ex;
 
 public class MemberServiceTest {
+    public static void test(MemberService service) {
+        if (service instanceof MemberJoinService) {
+            service.join(null);
+        } else if (service instanceof MemberLoginService) {
+            service.login(null, null);
+        }
+    }
 
     public static void main(String[] args) {
         MemberService mJoin = new MemberJoinService();
