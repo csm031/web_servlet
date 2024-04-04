@@ -3,6 +3,11 @@
 <html lang="ko">
 <head>
     <title>메인페이지</title>
+    <style>
+        a {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <h3>메인페이지</h3>
@@ -18,7 +23,8 @@
     if (dto != null) {
 %>
 <!-- 회원에게 보여지는 화면 -->
-<%= dto.getNickname()%>님 환영합니다.<br> <!--JSP페이지에서 자바소스 코드의 값을 출력하는데 사용되는 스크립트 요소: 표현식 -->
+<!--JSP페이지에서 자바소스 코드의 값을 출력하는데 사용되는 스크립트 요소: 표현식 -->
+<%= dto.getNickname()%>님 환영합니다.<br>
 <a href="member/update.jsp">회원정보변경</a><br>
 <!-- 로그아웃은 별도의 화면을 필요로 하지 않기 때문에 바로 서버에 URL로 로그아웃 요청함 (get 방식)-->
 <a href="member/logoutProcess.jsp">로그아웃</a><br>

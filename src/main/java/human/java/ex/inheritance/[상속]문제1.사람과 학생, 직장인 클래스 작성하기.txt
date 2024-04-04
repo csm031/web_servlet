@@ -1,0 +1,26 @@
+1. 상속관계의 클래스를 작성하기 위해서는 각각의 클래스에 대한 설계가 먼저 이루어져야 한다.
+2. 클래스의 설계는 현실 객체를 소프트웨어 객체로 변환하는 과정이다.
+    현실 객체를 SW객체로 정의하기 위해서는 프로그램에 꼭 필요한 특징만 남기고 나머지 특징은 버린다.(추상화)
+    객체는 속성과 행위로 이루어지는데 속성은 정적인 특징으로 상태라고도 하고 행위는 동적인 특징으로 동작이라고도 한다.
+    객체의 속성은 클래스의 필드로, 객체의 행위는 클래스의 메소드로 설계된다.
+
+학생 속성: 이름, 나이, 성별, 학교명, 학년
+    행위: 먹는다, 잔다, 운동한다, 공부한다
+
+직장인 속성: 이름, 나이, 성별, 회사명, 부서명
+        행위: 먹는다, 잔다, 운동한다, 일한다.
+
+사람 공통속성: 이름, 나이, 성별
+    공통행위: 먹는다, 잔다, 운동한다
+
+Person(부모클래스)
+fields - name:String, age:int, gender:String
+methods - eat():void, sleep():void, exercise():void
+
+Student(자식클래스)
+fields - school:String, year:int
+methods - study():void
+
+Worker(자식클래스)
+fields - company:String, department:String
+methods - work():void

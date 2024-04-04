@@ -29,7 +29,7 @@ if(result == 1) {//회원탈퇴 성공 시
 }else {//회원탈퇴 실패 시
 	//request객체에 실패 메시지 저장하기
 	request.setAttribute("msg", "시스템의 문제로 회원탈퇴가 이루어지지 않았습니다. 빠른 시일 내에 시스템을 정상화하겠습니다");
-	//request객체를 유지하면서 메인페이지로 이동하기: foward - RequestDispatcher
+	//request객체를 유지하면서 메인페이지로 이동하기: forward - RequestDispatcher
 	RequestDispatcher dispatcher = request.getRequestDispatcher("../index.jsp");
 	dispatcher.forward(request, response);
 }
