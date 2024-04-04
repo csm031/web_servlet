@@ -14,7 +14,7 @@
 <html lang="ko">
 <head>
     <title>쿠키 실습: 팝업창 관리</title>
-    <script src="${pageContext.request.contextPath}resources/js/jquery-3.7.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.min.js"></script>
     <style>
         #popup {
             position: absolute;
@@ -32,7 +32,7 @@
 
         #popup > div {
             position: relative;
-            top: 0px;
+            top: 0;
             padding: 10px;
             background-color: white;
             color: black;
@@ -42,7 +42,33 @@
     </style>
     <!-- 자바스크립트:JQuery -->
     <script>
+
+        //기존에 추가된 쿠키의 값을 확인하는 함수
+        getCookieValue = (cookieName) => {
+            let result = null; // 쿠키가 없을 경우 결과값
+
+            let cookies = document.cookie.split(";");
+
+            for (let cookie of cookies) {
+                let trimmedCookie = cookie.trim();
+                if (trimmedCookie.startsWith(cookieName + "=")) {
+
+                    result = trimmedCookie.substring(cookieName.length + 1);
+
+                }
+            }
+            return result;
+        }
+
+
         $(function () {
+            //popupClose 라는 쿠키의 값의 확인해서 그 값이 Off이면 팝업창을 보이지 않도록 함
+            const popupCloseVal = getCookieValue("popupClose");
+            if (popupCloseVal == "Off") {
+                $("#popup").hide();
+            }
+
+
             //팝업화면의 닫기버튼클릭 이벤트에 대한 처리
             $("#btn-close").on("click", function () {
 
@@ -58,7 +84,7 @@
                     data: {"closeOneDay": chkVal},
                     success: function (resData) {
 
-                        if (resData.trim() != "") {
+                        if (resData.trim() !== "") {
                             location.reload(); // 현재 페이지를 새로고침해서 서버로 부터 가져온
                             //쿠키값(Off)가 화면에 출력되도록 함
                         }
