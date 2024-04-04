@@ -7,6 +7,9 @@ public class MemberServiceTest {
         } else if (service instanceof MemberLoginService) {
             service.login(null, null);
         }
+
+        //상위계층의 인터페이스형으로 매개변수의 타입을 정의하고 인자값으로 하위 클래스 객체를
+        //받으면 하위 클래스의 메소드 오버라이딩된 메소드를 참조타입 변환 없이 호출할 수 있음
     }
 
     public static void main(String[] args) {
