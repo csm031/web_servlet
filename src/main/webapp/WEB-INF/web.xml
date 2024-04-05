@@ -2,5 +2,29 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>web_servlet</display-name>
 
+    <filter>
+        <filter-name>HangulEncoding</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
 
+    <filter-mapping>
+        <filter-name>HangulEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+ <error-page>
+   <location>/error/error404.jsp</location>
+ </error-page>
+
+  <error-page>
+    <location>/error/error405.jsp</location>
+  </error-page>
+
+  <error-page>
+    <location>/error/error500.jsp</location>
+  </error-page>
 </web-app>
