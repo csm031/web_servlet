@@ -6,7 +6,7 @@
     //스크립트릿 : 서블릿으로 변환될 경우 _jspService()메소드 내에 포함되는 내용
 
 //로그인 처리
-
+    request.setCharacterEncoding("UTF-8");
 //JSP페이지에서 전달된 아이디와 비밀번호 가져오기
     String member_id = request.getParameter("member_id");
     String member_pw = request.getParameter("member_pw");
@@ -30,12 +30,18 @@
 
     } else {//로그인 실패 시
         //request객체에 실패 메시지를 저장하기
-        request.setAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다");
+//        request.setAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다");
         //request객체를 유지하면서 다른 페이지로 이동하기: forward()
         //RequestDispatcher객체의 forward()메소드 이용
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-%>    
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+//        dispatcher.forward(request, response);
+        //2. pageContext객체의 forward()메소드 이용 (JSP페이지에서만 사용 가능)
+//        pageContext.forward("login.jsp");
+%>
+<!-- 3. forward액션태그를 이용 -->
+<jsp:forward page="login.jsp">
+<jsp:param name="msg" value="아이디나 비밀번호가 일치하지 않습니다"/>
+</jsp:forward>
+<%
+        }
+%>

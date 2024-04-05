@@ -26,8 +26,12 @@
 </form>
 
     <%
+
         String msg = null;
-        msg = (String) request.getAttribute("msg");
+//        request 객체의 속성에 저장된 값을 가져와서 처리하는 경우
+//        msg = (String) request.getAttribute("msg");
+//        param 액션 태그를 이용해서 전달된 값을 받아서 처리하는 경우
+        msg = request.getParameter("msg");
         if (msg != null) {
             out.println("<p>"+msg+"</p>");
         }

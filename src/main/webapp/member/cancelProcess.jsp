@@ -30,8 +30,20 @@ if(result == 1) {//회원탈퇴 성공 시
 	//request객체에 실패 메시지 저장하기
 	request.setAttribute("msg", "시스템의 문제로 회원탈퇴가 이루어지지 않았습니다. 빠른 시일 내에 시스템을 정상화하겠습니다");
 	//request객체를 유지하면서 메인페이지로 이동하기: forward - RequestDispatcher
-	RequestDispatcher dispatcher = request.getRequestDispatcher("../index.jsp");
-	dispatcher.forward(request, response);
-}
+//	RequestDispatcher dispatcher = request.getRequestDispatcher("../index.jsp");
+//	dispatcher.forward(request, response);
+	//2. pageContext객체의 forward()메소드 이용 (JSP페이지에서만 사용 가능)
+//	pageContext.forward("../index.jsp");
 
-%>    
+%>
+	<!-- 3. forward액션태그 이용 -->
+<!-- request 영역에 속성으로 값을 저장하는 것 대신에 param 액션 태그를 이용해서 parameter 로
+	request 객체에 값을 저장함	-->
+<jsp:forward page="../index.jsp">
+	<jsp:param name="msg" value="시스템의 문제로 회원탈퇴가 이루어지지 않았습니다. 빠른 시일 내에 시스템을 정상화하겠습니다"/>
+</jsp:forward>
+
+
+<%
+	}
+%>

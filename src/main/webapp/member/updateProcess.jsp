@@ -46,9 +46,14 @@
         request.setAttribute("msg", "시스템의 문제로 회원정보 변경이 이루어지지 않았습니다. 빠른 시일 내에 시스템을 정상화하겠습니다");
         //request객체를 유지하면서 다른 페이지로 이동하기: forward()
         //RequestDispatcher객체의 forward()메소드 이용
-        RequestDispatcher dispatcher = request.getRequestDispatcher("update.jsp");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("update.jsp");
+//        dispatcher.forward(request, response);
+        //2. pageContext객체의 forward()메소드 이용 (JSP페이지에서만 사용 가능)
+//        pageContext.forward("update.jsp");
 
+
+%>
+<jsp:forward page="update.jsp"/>
+<%
     }
-
-%>    
+%>
