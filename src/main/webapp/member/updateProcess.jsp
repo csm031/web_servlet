@@ -12,7 +12,7 @@
 //회원정보 변경 처리
 //6개의 회원정보를 저장할 수 있는 객체 필요: DTO(Data Transfer Object) - MemberDTO
     request.setCharacterEncoding("UTF-8");
-    MemberDTO dto = new MemberDTO();
+    dto = new MemberDTO();
     String m_idx = request.getParameter("m_idx");
     if (m_idx != null && !m_idx.isEmpty()) {
         dto.setM_idx(Integer.parseInt(m_idx));
