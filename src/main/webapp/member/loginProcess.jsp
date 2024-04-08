@@ -2,8 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ page import="human.web.member.*" %>
 
-<%
-    //스크립트릿 : 서블릿으로 변환될 경우 _jspService()메소드 내에 포함되는 내용
+<%    //스크립트릿 : 서블릿으로 변환될 경우 _jspService()메소드 내에 포함되는 내용
 
 //로그인 처리
     request.setCharacterEncoding("UTF-8");

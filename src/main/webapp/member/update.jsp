@@ -33,12 +33,7 @@
     <input type="submit" value="수정하기">
     <input type="button" value="취소하기" onclick="location.href='../index.jsp'">
 </form>
-<%
-    String msg = null;
-    msg = (String) request.getAttribute("msg");
-    if (msg != null) {
-        out.println("<p>"+msg+"</p>");
-    }
-%>
+
+<p>${not empty msg ? msg : " "}</p>
 </body>
 </html>

@@ -24,12 +24,14 @@
 %>
 <!-- 회원에게 보여지는 화면 -->
 <!--JSP페이지에서 자바소스 코드의 값을 출력하는데 사용되는 스크립트 요소: 표현식 -->
-<%= dto.getNickname()%>님 환영합니다.<br>
+${member.nickname}님 환영합니다.<br>
 <a href="member/update.jsp">회원정보변경</a><br>
 <!-- 로그아웃은 별도의 화면을 필요로 하지 않기 때문에 바로 서버에 URL로 로그아웃 요청함 (get 방식)-->
 <a href="member/logoutProcess.jsp">로그아웃</a><br>
 
 <a href="javascript:cancel();">회원탈퇴</a>
+<!-- 회원정보 탈퇴 실패 시 메시지 출력 -->
+<p> ${not empty msg ? msg : " "}</p>
 <%
     //회원정보 탈퇴 실패 시 메시지 출력
     String msg;

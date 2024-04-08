@@ -24,17 +24,6 @@
     <input type="password" name="member_pw" placeholder="비밀번호" > <br>
     <input type="submit" value="로그인">
 </form>
-
-    <%
-
-        String msg = null;
-//        request 객체의 속성에 저장된 값을 가져와서 처리하는 경우
-//        msg = (String) request.getAttribute("msg");
-//        param 액션 태그를 이용해서 전달된 값을 받아서 처리하는 경우
-        msg = request.getParameter("msg");
-        if (msg != null) {
-            out.println("<p>"+msg+"</p>");
-        }
-    %>
+<p>${not empty msg ? msg : " "}</p>
 </body>
 </html>
