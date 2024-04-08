@@ -112,7 +112,49 @@ pid 쿠키 값: ${ cookie.pid.value } <br>
 
 <!-- 6. Map, List 객체 -->
 <%@ page import="java.util.*, human.jsp_ex.util.Person" %>
+<!--
+(배열 : 1개의 데이터형, 고정된 크기, 연속적인 저장공간,
+ 인덱스를 이용한 배열 요소 접근, 중복된 값을 저장 가능)
+10개의 정수를 저장할 수 있는 배열 nums를 정의하시오.
+int[] nums = new int[10];
 
+(컬렉션(Collection): 여러 개의 데이터형, 가변적인 크기)
+-Set: 순서가 없음, 중복된 값을 허용하지 않음
+-List: 순서가 있음, 중복된 값을 허용함
+-Map: (key, value)의 쌍으로 값을 저장함, key를 이용해서 value 사용 - HashMap클래스
+-->
 
+<%
+    List<Person> heroList = new ArrayList<>();
+    heroList.add(new Person("이순신", 30));
+    heroList.add(new Person("강감찬", 50));
+// 제네릭을 적용하지 않은 경우: 업캐스팅되어서 저장된 데이터를 다운캐스팅해서 사용해야 하는 불편함 발생
+//    String p1 = (String) heroList.get(0).getName();
+//    제네릭을 적용한 경우: 정해진 데이터형으로 데이터가 컬렉션에 저장되고 가지고 올 때도 정해진 데이터형으로
+//    가져올 수 있기 때문에 참조형변환(업캐스팅,다운캐스팅)이 필요 없어짐
+//    제네릭의 형식: 컬렉션 타입<데이터형>
+//    String p1Name = heroList.get(0).getName();
+
+    pageContext.setAttribute("heroList", heroList);
+
+    HashMap<String, String> langMap = new HashMap<>();
+    langMap.put("Kor", "Korean");
+    langMap.put("Eng", "English");
+
+    pageContext.setAttribute("langMap", langMap);
+
+%>
+한국어: ${ langMap.Kor } <br>
+영어: ${ langMap['Eng'] } <br>
+영웅 리스트<br>
+이름: ${ heroList[0].name }, 나이: ${ heroList[0].age } <br>
+이름: ${ heroList[1].name }, 나이: ${ heroList[1].age } <br>
+
+<hr>
+
+<!-- 7. pageContext 객체 -->
+요청 URI: ${ pageContext.request.requestURI } <br>
+요청 URL: ${ pageContext.request.requestURL } <br>
+컨텍스트 경로: ${ pageContext.request.contextPath } <br>
 </body>
 </html>
