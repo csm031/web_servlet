@@ -135,14 +135,11 @@ test 속성에 오는 EL 양쪽에 공백이 있는 경우 결과값: ${result3}
 ** Data 클래스에 문자열 입력값을 받아서 문자열 배열로 반환하는 getStringArray()메소드를
     정의하고 이것을 EL에서 이용하여 items에 값으로 입력함
 -->
-오류
-<%--
-<c:set var="names" value='${Data.getStringArray("홍길동", "이순신", "강감찬")}'/>
+<c:set var="names" value="${Data.getStringArray('홍길동', '이순신', '강감찬')}"/>
 <c:forEach var="name" items="${names}" varStatus="status">
     ${name}<c:if test="${not status.last}">, </c:if>
 </c:forEach>
---%>
-
+<hr>
 <!-- List객체에 저장된 Person 객체의 이름과 나이 출력하기 -->
 <c:forEach var="person" items="${heroList}">
     이름: ${person.name}, 나이: ${person.age} <br>
@@ -159,6 +156,27 @@ test 속성에 오는 EL 양쪽에 공백이 있는 경우 결과값: ${result3}
 <!-- 4. 페이지 이동 태그: import, redirect
 import 태그: url속성의 otherPage.jsp의 실행결과를 var속성의 contents 변수에 저장함
 -->
+<c:set var="bookName" value="JSP프로그래밍" scope="request"/>
+<c:import  var="contents" url="ex07_otherPage.jsp">
+    <c:param name="category1" value="컴퓨터/인터넷"/>
+    <c:param name="category2" value="웹프로그래밍"/>
+</c:import>
+
+contents 변수에 저장된 내용: <br>
+${contents}
+
+<!-- redirect 태그: response 객체의 sendRedirect() 메소드와 같은 기능을 하는 태그
+context 속성에 컨텍스트 경로를 지정하면 url 속성에는 그 이하의 경로를 지정해야 함 -->
+<c:redirect url="ex07_otherPage.jsp">
+    <c:param name="category1" value="컴퓨터/인터넷"/>
+    <c:param name="category2" value="웹프로그래밍"/>
+</c:redirect>
+
+<c:redirect url="/jsp_ex/ex07_otherPage.jsp" context="${pageContext.request.contextPath}">
+    <c:param name="category1" value="컴퓨터/인터넷"/>
+    <c:param name="category2" value="웹프로그래밍"/>
+</c:redirect>
+
 </body>
 </html>
 
