@@ -22,7 +22,8 @@
         <c:redirect url="../index.jsp"/>
     </c:when>
     <c:otherwise>
-       <c:set var="msg" value="아이디나 비밀번호가 일치하지 않습니다" scope="session"/>
-        <c:redirect url="login.jsp"/>
+      <jsp:forward page="login.jsp">
+              <jsp:param name="msg" value="아이디나 비밀번호가 일치하지 않습니다"/>
+      </jsp:forward>
     </c:otherwise>
 </c:choose>

@@ -34,6 +34,6 @@
     <input type="button" value="취소하기" onclick="location.href='../index.jsp'">
 </form>
 
-<p>${not empty msg ? msg : " "}</p>
+<p>${not empty param.msg ? param.msg : " "}</p>
 </body>
 </html>

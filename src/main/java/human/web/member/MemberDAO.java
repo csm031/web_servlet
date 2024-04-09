@@ -159,7 +159,7 @@ public class MemberDAO extends DBCP {
 
             result = pstmt.executeUpdate();
             //로그인 처리 메소드의 SQL문에 회원상태를 조건으로 추가해줌
-
+            System.out.println("c OK");
         } catch (SQLException e) {
             System.out.println("회원탈퇴 처리 시 예외 발생");
             e.printStackTrace();

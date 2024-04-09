@@ -24,6 +24,6 @@
     <input type="password" name="member_pw" placeholder="비밀번호" > <br>
     <input type="submit" value="로그인">
 </form>
-<p>${not empty sessionScope.msg ? sessionScope.msg : " "}</p>
+<p>${not empty param.msg ? param.msg : " "}</p>
 </body>
 </html>
