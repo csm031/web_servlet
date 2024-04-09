@@ -33,14 +33,15 @@ ${member.nickname}님 환영합니다.<br>
 
 <a href="javascript:cancel();">회원탈퇴</a>
 <!-- 회원정보 탈퇴 실패 시 메시지 출력 -->
-<p> ${not empty msg ? msg : " "}</p>
+<p> ${not empty cancelMsg ? cancelMsg : " "}</p>
+
 <%
-    //회원정보 탈퇴 실패 시 메시지 출력
-    String msg;
-    msg = (String) request.getAttribute("msg");
-    if (msg != null) {
-        out.println("<p>" + msg + "</p>");
-    }
+/*    //회원정보 탈퇴 실패 시 메시지 출력
+    String cancelMsg;
+    cancelMsg = (String) request.getAttribute("msg");
+    if (cancelMsg != null) {
+        out.println("<p>" + cancelMsg + "</p>");
+    }*/
 } else { //비회원인 경우
 %>
 <!--비회원에게 보여지는 화면-->

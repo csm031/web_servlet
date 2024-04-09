@@ -164,6 +164,7 @@ import 태그: url속성의 otherPage.jsp의 실행결과를 var속성의 conten
 
 contents 변수에 저장된 내용: <br>
 ${contents}
+<%--
 
 <!-- redirect 태그: response 객체의 sendRedirect() 메소드와 같은 기능을 하는 태그
 context 속성에 컨텍스트 경로를 지정하면 url 속성에는 그 이하의 경로를 지정해야 함 -->
@@ -176,7 +177,46 @@ context 속성에 컨텍스트 경로를 지정하면 url 속성에는 그 이�
     <c:param name="category1" value="컴퓨터/인터넷"/>
     <c:param name="category2" value="웹프로그래밍"/>
 </c:redirect>
+--%>
 
+<hr>
+
+<!-- 5. url 태그: url을 변수로 저장해서 사용할 수 있게 함
+value 속성: 컨텍스트 경로를 기본적으로 포함하고 있으므로 컨텍스트 이하의 경로를 붙이면 됨
+-->
+<c:url var="url" value="ex07_otherPage.jsp"/>
+<a href="${url}?category1=spring5&category2=기본서">ex07_other.jsp 바로가기</a><br>
+<c:url var="main" value="../index.jsp"/>
+<a href="${main}">main페이지 바로 가기</a>
+
+<hr>
+
+<!-- 6. out 태그
+- 표현식과 EL과 동일한 역할
+- 출력내용에 포함된 HTML태그를 해석해서 적용할 수 있는 escapeXml속성이 있음
+    escapeXml속성을 false로 지정하면 HTML 태그를 해석해서 마크업이 적용된 상태로 출력함
+ - 출력내용이 null일 경우 기본값을 지정해서 출력할 수 있는 default속성이 있음
+ 빈 문자열은 값으로 해석해서 default 값이 출력되지 않음
+-->
+<c:set var="iTag">
+    i 태그는 <i style="color:red">기울임</i>을 표현하다.
+</c:set>
+
+표현식이나 EL과 동일한 역할을 하는 출력: <c:out value="${iTag}"/> <br>
+출력내용에 포함된 HTML 태그를 해석해서 출력: <c:out value="${iTag}" escapeXml="false"/><br>
+출력내용이 null인 경우 default 속성값 출력: <c:out value="${param.test}" default="테스트 내용"/> <br>
+출력내용이 빈 문자열인 경우의 출력: <c:out value="" default="테스트 내용"/> <br>
+
+<hr>
+
+<!-- 7. catch 태그: 예외 발생 구문에서 예외를 받아서 var 속성에 저장함 -->
+<c:catch var="e">
+    <%
+        int result = 100/0;
+    %>
+</c:catch>
+<!-- 예외처리 구문 정의 -->
+<c:if test="${not empty e}">예외 발생: ${e} </c:if>
 </body>
 </html>
 

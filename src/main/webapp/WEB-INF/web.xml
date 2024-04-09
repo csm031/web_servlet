@@ -24,7 +24,7 @@
     <location>/error/error405.jsp</location>
   </error-page>
 
-  <error-page>
+  <!--<error-page>
     <location>/error/error500.jsp</location>
-  </error-page>
+  </error-page>-->
 </web-app>

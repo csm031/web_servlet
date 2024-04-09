@@ -86,6 +86,9 @@ public class MemberDAO extends DBCP {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            close();
+        }
         //아이디를 이용해서 회원정보를 가져오기
 
         return dto;
