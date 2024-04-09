@@ -11,6 +11,8 @@
           <element id="library" level="project" name="Java EE 6-Java EE 6" />
           <element id="library" level="project" name="ojdbc6" />
           <element id="library" level="project" name="tomcat-dbcp" />
+          <element id="library" level="project" name="catalina" />
+          <element id="library" level="project" name="jsp-api" />
         </element>
       </element>
     </root>
