@@ -38,4 +38,15 @@ public class Data {
         }
         return personList;
     }
+
+//   String 객체를 저장하는 String 배열 객체를 반환하는 메소드: getStringArray()
+    public static String[] getStringArray(String ...strings) {
+        String [] result = new String[strings.length];
+        for(int i = 0; i < strings.length; i++) {
+            result[i] = strings[i];
+        }
+
+        return result;
+    }
+    
 }
