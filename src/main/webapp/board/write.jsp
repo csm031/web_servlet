@@ -2,11 +2,13 @@
 <html lang="ko">
   <head>
     <title>글등록</title>
+      <!-- href="../resources/css/write.css -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/write.css">
   </head>
   <body>
 
   <form name="frm_write" action="writeProcess.jsp" method="post" enctype="multipart/form-data">
-      <table border="1">
+      <table>
           <caption>글 등록</caption>
           <tr>
               <th>작성자(닉네임)</th>
@@ -43,6 +45,5 @@
           </tr>
       </table>
   </form>
-
   </body>
 </html>
