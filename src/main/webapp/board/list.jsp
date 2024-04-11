@@ -5,17 +5,8 @@
     <title>글 목록</title>
 
     <style>
-        #imgs{
-            transition-property: all;
-            transition-duration: 1s;
-        }
-        #imgs:hover{
-            width: 300px;
-            height: 200px;
-
-        }
         td{
-            padding: 30px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -93,7 +84,7 @@
                 <td><%-- 첨부 --%>
                     <%-- 첨부파일이 있을 경우 첨부파일 이미지를 출력되도록 함 --%>
                     <c:if test="${not empty board.origin_filename}">
-                        <img  id="imgs" src="${pageContext.request.contextPath}/resources/img/download.png" width="50px" height="45px" alt="이미지1"style="">
+                        <img  id="imgs" src="${pageContext.request.contextPath}/resources/img/download.png" width="20px" height="20px" alt="이미지1"style="">
                     </c:if>
                 </td>
             </tr>
