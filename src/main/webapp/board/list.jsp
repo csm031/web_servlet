@@ -3,6 +3,21 @@
 <html lang="ko">
 <head>
     <title>글 목록</title>
+
+    <style>
+        #imgs{
+            transition-property: all;
+            transition-duration: 1s;
+        }
+        #imgs:hover{
+            width: 300px;
+            height: 200px;
+
+        }
+        td{
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
 
@@ -40,7 +55,7 @@
 </form>
 
 <!-- 글목록 테이블 -->
-<table>
+<table border="1">
     <tr>
         <th>번호</th>
         <th>제목</th>
@@ -58,7 +73,7 @@
             </tr>
         </c:when>
         <c:otherwise>
-            <c:forEach var="board" items="${boardList}" varStatus="status"/>
+            <c:forEach var="board" items="${boardList}" varStatus="status">
             <tr>
                 <td><%-- 번호 --%>
                     ${status.count}
@@ -78,10 +93,11 @@
                 <td><%-- 첨부 --%>
                     <%-- 첨부파일이 있을 경우 첨부파일 이미지를 출력되도록 함 --%>
                     <c:if test="${not empty board.origin_filename}">
-                        <img src="${pageContext.request.contextPath}/resources/img/download.png" width="15px" height="17px" alt="이미지1">
+                        <img  id="imgs" src="${pageContext.request.contextPath}/resources/img/download.png" width="50px" height="45px" alt="이미지1"style="">
                     </c:if>
                 </td>
             </tr>
+            </c:forEach>
         </c:otherwise>
     </c:choose>
 </table>

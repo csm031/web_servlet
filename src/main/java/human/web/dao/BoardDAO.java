@@ -24,7 +24,7 @@ public class BoardDAO extends DBCP {
                 pstmt.setString(6, dto.getSave_filename());
 
             } else { // 파일 업로드가 되지 않은 경우
-                String sql = "insert into TB_BOARD (b_idx, m_idx, writer, title, content )"
+                String sql = "insert into TB_BOARD (b_idx, m_idx, writer, title, content)"
                         + " values (board_seq.nextval,?,?,?,?)";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1, dto.getM_idx());
@@ -51,7 +51,7 @@ public class BoardDAO extends DBCP {
             if (dto.getSearchWord() != null) { //검색어로 검색한 경우
                 //검색영역을 체크하는 구문
                 String searchField = null;
-                switch (dto.getSearchWord()) {
+                switch (dto.getSearchField()) {
                     case "title":
                         searchField = "title";
                         break;
