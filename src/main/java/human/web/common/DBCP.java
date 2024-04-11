@@ -1,4 +1,4 @@
-package human.web.member;
+package human.web.common;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

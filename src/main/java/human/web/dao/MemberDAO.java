@@ -1,5 +1,8 @@
-package human.web.member;
+package human.web.dao;
 
+
+import human.web.common.DBCP;
+import human.web.dto.MemberDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

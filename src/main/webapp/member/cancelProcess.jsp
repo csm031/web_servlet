@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="human.web.member.*" %>
+<%@ page import="human.web.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="dto" class="human.web.member.MemberDTO"/>
-<jsp:useBean id="dao" class="human.web.member.MemberDAO"/>
+<jsp:useBean id="dto" class="human.web.dto.MemberDTO"/>
+<jsp:useBean id="dao" class="human.web.dao.MemberDAO"/>
 
 <c:set var="m_idx" value="${member.m_idx}"/>
 

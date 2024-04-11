@@ -1,0 +1,14 @@
+1. 파일 업로드를 지원하는 API 다운로드 및 추가하기
+- https://www.servlets.com/cos/ 에서 cos-22.05.zip 다운로드
+- WEB-INF/lib/cos.jar 파일 추가
+
+2. 프로젝트 폴더에 uploads 폴더 만들기
+- 파일 업로드되는 폴더
+
+3. <form>태그 속성 정의
+- method="post"
+- enctype="multipart/form-data"
+
+4. <input type="file" name="uploadFile"> 정의
+
+5. 사용자단에서 올린 게시물 정보는 모두 MultipartRequest 객체에 저장됨

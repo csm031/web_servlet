@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="human.web.member.*" %>
+<%@ page import="human.web.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -9,7 +9,7 @@
 <c:set var="member_pw" value="${param.member_pw}"/>
 
 <!--MemberDAO를 이용해서 로그인 처리하기-->
-<jsp:useBean id="dao" class="human.web.member.MemberDAO"/>
+<jsp:useBean id="dao" class="human.web.dao.MemberDAO"/>
 
 <c:set var="result" value="${dao.login(member_id,member_pw)}"/>
 

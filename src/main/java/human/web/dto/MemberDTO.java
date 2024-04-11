@@ -1,4 +1,4 @@
-package human.web.member;
+package human.web.dto;
 
 import java.util.Date;
 

@@ -3,4 +3,10 @@
     <ResourceLink global="oracle_dbcp"
                   name="oracle_dbcp"
                   type="javax.sql.DataSource" />
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              initialSize="0" minIdle="5" maxTotal="20" mxIdle="20" maxWaitMillis="5000"
+              pathname="conf/tomcat-users.xml"/>
 </Context>

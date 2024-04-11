@@ -1,15 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="human.web.member.*" %>
+<%@ page import="human.web.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% request.setCharacterEncoding("UTF-8"); %></>
 
-<jsp:useBean id="dto" class="human.web.member.MemberDTO"/>
-<jsp:useBean id="dao" class="human.web.member.MemberDAO"/>
+<jsp:useBean id="dto" class="human.web.dto.MemberDTO"/>
+<jsp:useBean id="dao" class="human.web.dao.MemberDAO"/>
 <jsp:setProperty name="dto" property="*"/>
 <!--회원 정보 변경 처리 -->
 <c:set var="result" value="${dao.update(dto)}"/>
-<%--<c:set var="result" value="${dao.update(dto)}"/>--%>
 <c:choose>
     <c:when test="${result eq 1}">
 

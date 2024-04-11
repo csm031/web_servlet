@@ -1,0 +1,25 @@
+<< 회원 테이블 >>
+
+<<게시판 테이블 >>
+
+create table tb_board(
+b_idx number,                    --1.게시글번호(기본키)
+m_idx number,                    --2.회원번호(참조키)
+writer varchar2(30) not null,    --3.작성자
+title varchar2(50) not null,     --4.제목
+content varchar2(1000) not null, --5.내용
+orgin_filename varchar2(50),     --6.원본파일명
+save_filename varchar2(50),      --7.저장파일명
+read_cnt number(10) default 0,   --8.조회수
+post_date date default sysdate,  --9.작성일
+update_date date default sysdate,--10.수정일
+board_status number(1) default 1,--11.게시글상태(1:유지, -1:삭제)
+constraint tb_board_pk primary key (b_idx),
+constraint tb_board_fk foreign key (m_idx)
+    references tb_member (m_idx)
+);
+
+create sequence board_seq
+minvalue 1
+maxvalue 999999999
+nocyle nocache noorder;
