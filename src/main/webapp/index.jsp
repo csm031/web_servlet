@@ -32,6 +32,7 @@
         <!--비회원에게 보여지는 화면-->
         <a href="member/join.jsp">회원가입</a><br>
         <a href="member/login.jsp">로그인</a><br>
+        <a href="board/list.jsp">글 목록</a><br>
     </c:otherwise>
 </c:choose>
 <script>
