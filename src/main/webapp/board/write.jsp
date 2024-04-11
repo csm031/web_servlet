@@ -13,8 +13,8 @@
           <tr>
               <th>작성자(닉네임)</th>
               <td>
-                  <input type="text" value="${member.nikename}" disabled>
-                  <input type="hidden" name="writer" value="${member.nikename}">
+                  <input type="text" value="${member.nickname}" disabled>
+                  <input type="hidden" name="writer" value="${member.nickname}">
                   <input type="hidden" name="m_idx" value="${member.m_idx}">
               </td>
           </tr>

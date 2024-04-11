@@ -16,13 +16,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
- <error-page>
-   <location>/error/error404.jsp</location>
- </error-page>
-
-  <error-page>
-    <location>/error/error405.jsp</location>
-  </error-page>
 
   <!--<error-page>
     <location>/error/error500.jsp</location>

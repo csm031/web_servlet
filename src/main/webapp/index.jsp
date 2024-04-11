@@ -21,8 +21,10 @@
         <a href="member/update.jsp">회원정보변경</a><br>
         <!-- 로그아웃은 별도의 화면을 필요로 하지 않기 때문에 바로 서버에 URL로 로그아웃 요청함 (get 방식)-->
         <a href="member/logoutProcess.jsp">로그아웃</a><br>
-
-        <a href="javascript:cancel();">회원탈퇴</a>
+        <a href="javascript:cancel();">회원탈퇴</a><br>
+        <hr>
+        <a href="board/list.jsp">글 목록</a><br>
+        <a href="board/write.jsp">글 쓰기</a><br>
         <!-- 회원정보 탈퇴 실패 시 메시지 출력 -->
         <p> ${not empty param.msg ? param.msg : " "}</p>
     </c:when>
