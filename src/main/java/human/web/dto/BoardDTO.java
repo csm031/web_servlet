@@ -2,6 +2,9 @@ package human.web.dto;
 import java.util.Date;
 
 public class BoardDTO {
+    public BoardDTO() {
+    }
+
     private int b_idx; //게시글번호
     private int m_idx; //회원번호
     private String writer;//작성자
