@@ -4,11 +4,7 @@
 <head>
     <title>글 목록</title>
 
-    <style>
-        td{
-            padding: 10px;
-        }
-    </style>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/list.css">
 </head>
 <body>
 
@@ -27,7 +23,7 @@
     <table>
         <caption> 글 목록 </caption>
         <tr>
-            <td>총 게시물:</td>
+            <td id="td_title">총 게시물:</td>
             <td>
                 <label>
                     <select name="searchField">
@@ -39,14 +35,14 @@
                 <label>
                     <input type="text" name="searchWord">
                 </label>
-                <input type="submit" value="검색">
+                <input type="submit" value="검색" id="search_btn">
             </td>
         </tr>
     </table>
 </form>
 
 <!-- 글목록 테이블 -->
-<table border="1">
+<table id="tbl_list">
     <tr>
         <th>번호</th>
         <th>제목</th>
@@ -65,12 +61,13 @@
         </c:when>
         <c:otherwise>
             <c:forEach var="board" items="${boardList}" varStatus="status">
+
             <tr>
                 <td><%-- 번호 --%>
                     ${status.count}
                 </td>
                 <td><%-- 제목 --%>
-                    ${board.title}
+                    <a href="view.jsp?b_idx=${board.b_idx}">${board.title}</a>
                 </td>
                 <td><%-- 작성자 --%>
                     ${board.writer}

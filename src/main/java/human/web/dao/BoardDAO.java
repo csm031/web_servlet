@@ -98,4 +98,48 @@ public class BoardDAO extends DBCP {
         return boardList;
     }
 
+    //조회수 증가시키기
+    public void updateRead_cnt(int b_idx) {
+        try {
+            String sql = "update tb_board set read_cnt = read_cnt + 1 where b_idx = ?" ;
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, b_idx);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("updateRead_cnt ERROR: " + e);
+        }
+    }
+    //게시글 가져오기
+    public BoardDTO getBoard(int b_idx) {
+        BoardDTO dto = null;
+
+        try {
+            String sql = "select * from tb_board where b_idx = ?";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, b_idx);
+
+            rs = pstmt.executeQuery();
+            if (rs.next()) { // 결과값이 있는 경우
+                dto = new BoardDTO();
+                dto.setB_idx(rs.getInt("b_idx"));
+                dto.setM_idx(rs.getInt("M_idx"));
+                dto.setWriter(rs.getString("writer"));
+                dto.setTitle(rs.getString("title"));
+                dto.setContent(rs.getString("content"));
+                dto.setOrigin_filename(rs.getString("origin_filename"));
+                dto.setSave_filename(rs.getString("save_filename"));
+                dto.setRead_cnt(rs.getInt("read_cnt"));
+                dto.setPost_date(rs.getDate("post_date"));
+                dto.setUpdate_date(rs.getDate("update_date"));
+            }
+        } catch (SQLException e) {
+            System.out.println("getBoard ERROR: " + e);
+        }
+
+        return dto;
+    }
+
 }
