@@ -17,7 +17,5 @@
     </filter-mapping>
 
 
-  <!--<error-page>
-    <location>/error/error500.jsp</location>
-  </error-page>-->
+
 </web-app>

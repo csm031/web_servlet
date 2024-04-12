@@ -91,17 +91,15 @@ public class BoardDAO extends DBCP {
                 boardList.add(bDto);
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
-
-
         return boardList;
     }
 
     //조회수 증가시키기
     public void updateRead_cnt(int b_idx) {
         try {
-            String sql = "update tb_board set read_cnt = read_cnt + 1 where b_idx = ?" ;
+            String sql = "update tb_board set read_cnt = read_cnt + 1 where b_idx = ?";
 
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, b_idx);
@@ -111,6 +109,7 @@ public class BoardDAO extends DBCP {
             System.out.println("updateRead_cnt ERROR: " + e);
         }
     }
+
     //게시글 가져오기
     public BoardDTO getBoard(int b_idx) {
         BoardDTO dto = null;
@@ -142,4 +141,94 @@ public class BoardDAO extends DBCP {
         return dto;
     }
 
+    //게시글 수정하기
+    public int updateBoard(BoardDTO dto) {
+        int result = 0;
+
+        try {
+            if (dto.getOrigin_filename() != null) { // 파일 업로드가 된 경우
+                String sql = "update tb_board set TITLE = ?, CONTENT = ?, ORIGIN_FILENAME = ?," +
+                        " SAVE_FILENAME = ? where b_idx = ?";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, dto.getTitle());
+                pstmt.setString(2, dto.getContent());
+                pstmt.setString(3, dto.getOrigin_filename());
+                pstmt.setString(4, dto.getSave_filename());
+                pstmt.setInt(5, dto.getB_idx());
+
+            } else { // 파일 업로드가 되지 않은 경우
+                String sql = "update tb_board set TITLE = ?, CONTENT = ? where b_idx = ?";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, dto.getTitle());
+                pstmt.setString(2, dto.getContent());
+                pstmt.setInt(3, dto.getB_idx());
+            }
+
+            result = pstmt.executeUpdate(); // 게시글 입력 처리 후 적용된 행의 수 반환
+            System.out.println("updateBoard result: " + result);
+        } catch (SQLException e) {
+            System.out.println("boardDAO error: " + e);
+        }
+        return result;
+    }
+
+    // 게시글 삭제하기
+    public int deleteBoard(int b_idx) {
+        int result = 0;
+        try {
+            String sql = "update tb_board set BOARD_STATUS = -1 where b_idx = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, b_idx);
+
+            result = pstmt.executeUpdate(); // 게시글 입력 처리 후 적용된 행의 수 반환
+        } catch (SQLException e) {
+            System.out.println("delete error: " + e);
+        }
+        return result;
+    }
+
+    //검색조건을 포함해서 총 게시물 수 조회하기
+    public int getTotalRows(SearchDTO dto) {
+        int totalRows = 0; // 총 게시물 수 조회 실패 시 결과 값
+// 제네릭을 이용해서 컬렉션 객체 생성 시 참조변수의 제네릭타입이 생성자의 제네릭타입과
+// 같은 경우 생성자의 제네릭타입을 생략할 수 있음
+        try {
+            if (dto.getSearchWord() != null) { //검색어로 검색한 경우
+                //검색영역을 체크하는 구문
+                String searchField = null;
+                switch (dto.getSearchField()) {
+                    case "title":
+                        searchField = "title";
+                        break;
+                    case "content":
+                        searchField = "content";
+                        break;
+                    case "writer":
+                        searchField = "writer";
+                }
+
+                String sql = "select count(*) from tb_board where board_status = 1"
+                        + " and " + searchField + " like '%' || ? || '%' "
+                        + " order by b_idx desc";
+
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, dto.getSearchWord()); // 검색어 세팅
+            } else { // 검색어로 검색하지 않은 경우
+                String sql = "select count(*) from tb_board where board_status = 1"
+                        + " order by b_idx desc";
+
+                pstmt = conn.prepareStatement(sql);
+            }
+            rs = pstmt.executeQuery(); //조회된 결과를 ResultSet 객체에 담음
+
+            while (rs.next()) {// rs.next(): ResultSet 객체의 BOF 에서부터 시작해서
+                //저장된 데이터를 하나씩 확인해서 있으면 true 반환
+                totalRows = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+        return totalRows;
+    }
 }

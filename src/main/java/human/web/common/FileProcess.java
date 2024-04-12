@@ -62,8 +62,14 @@ public class FileProcess {
 			dto.setSave_filename(save_filename);
 		}
 		//4. BoardDTO의 필드에 세팅하기(회원번호,작성자,제목,내용)
-		dto.setM_idx(Integer.parseInt(mRequest.getParameter("m_idx")));
-		dto.setWriter(mRequest.getParameter("writer"));
+		if(mRequest.getParameter("b_idx") == null){
+			dto.setM_idx(Integer.parseInt(mRequest.getParameter("m_idx")));
+			dto.setWriter(mRequest.getParameter("writer"));
+
+		} else { //글 수정인 경우
+			dto.setB_idx(Integer.parseInt(mRequest.getParameter("b_idx")));
+		}
+		// 공통적으로 DTO에 세팅해야 하는 내용
 		dto.setTitle(mRequest.getParameter("title"));
 		dto.setContent(mRequest.getParameter("content"));
 		

@@ -40,8 +40,9 @@
           <tr>
               <th>첨부파일</th>
               <td>
-                  ${dto.save_filename}
                   <input type="file" name="uploadFile">
+                  <span id="file_msg">새로운 파일을 선택하면 이전 파일이 교체됩니다.</span>
+                  ${dto.save_filename}
               </td>
           </tr>
           <tr>

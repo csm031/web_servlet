@@ -43,10 +43,18 @@ ${dao.updateRead_cnt(b_idx)}<br>
         <tr>
             <td colspan="2" id="td_btn">
                 <input type="submit" value="수정하기" onclick="location.href='update.jsp?b_idx=${dto.b_idx}'">
-                <input type="reset" value="삭제하기">
+                <input type="reset" value="삭제하기" onclick="deletePost()">
                 <input type="button" value="목록보기" onclick="location.href='list.jsp'">
             </td>
         </tr>
     </table>
+<script>
+    deletePost=() =>{
+        const ans = confirm("정말로 삭제하실건가요?");
+        if (ans) {
+            location.href="deleteProcess.jsp?b_idx=${dto.b_idx}"
+        }
+    }
+</script>
 </body>
 </html>
