@@ -7,7 +7,7 @@
 <%-- 페이지 네비게이션에서 페이지 끝번호: endPageNum--%>
 <c:set var="endPageNum" value="${pageBlock*pages_per_block}"/>
 
-<c:forEach var="i" begin="${startPageNum}" end="${endPageNum">
+<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
 <c:if test="${i le totalPageNum}"> <%-- le = <= 임 --%>
     ${i}&nbsp;
 </c:if>
