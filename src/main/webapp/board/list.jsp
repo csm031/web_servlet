@@ -43,10 +43,11 @@
 <c:set var="pages_per_block" value="5"/>
 
 <!-- 4. 페이지 네비게이션에서 현재 페이지 번호: pageNum -->
-<c:set var="pageNum" value="${param.pageNum}}"/>
-<c:if test="${empty PageNum}">
-    <c:set var="pageNum" value="1"/>
+<c:set var="pageNum" value="${param.pageNum}" />
+<c:if test="${empty pageNum}">
+    <c:set var="pageNum" value="1" />
 </c:if>
+
 
 <!-- 5. 테이블에 표시할 시작번호: startNum -->
 <!-- 페이지번호가 1일 때 (1-1)*10+1 = 1
