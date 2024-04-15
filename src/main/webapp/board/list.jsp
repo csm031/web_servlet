@@ -139,8 +139,10 @@
                         <td><%-- 첨부 --%>
                                 <%-- 첨부파일이 있을 경우 첨부파일 이미지를 출력되도록 함 --%>
                             <c:if test="${not empty boardList[rowNum-1].origin_filename}">
+                                <a href="download.jsp?oName=${boardList[rowNum-1].origin_filename}&sName=${boardList[rowNum-1].save_filename }">
                                 <img id="imgs" src="${pageContext.request.contextPath}/resources/img/download.png"
                                      width="20px" height="20px" alt="이미지1">
+                                </a>
                             </c:if>
                         </td>
                     </tr>

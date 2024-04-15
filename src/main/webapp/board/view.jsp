@@ -31,13 +31,15 @@ ${dao.updateRead_cnt(b_idx)}<br>
         <tr>
             <th>내용</th>
             <td>
-                ${dto.content}
+                <textarea cols="30" rows="5" disabled>${dto.content}</textarea>
             </td>
         </tr>
         <tr>
             <th>첨부파일</th>
             <td>
+                <a href="download.jsp?oName=${dto.origin_filename}&sName=${dto.save_filename}">
                 <img src="${pageContext.request.contextPath}/uploads/${dto.save_filename}" width="290" height="200"><br>${dto.origin_filename}
+                </a>
             </td>
         </tr>
         <tr>
