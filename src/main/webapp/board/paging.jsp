@@ -14,7 +14,7 @@
     <c:when test="${not empty searchDto.searchWord}">
         <!-- 검색어가 있는 경우 -->
         <!-- 첫번째 페이지 표시와 이전 페이지 출력하기 -->
-        <c:if test="${pageNum>pages_per_block}">
+        <c:if test="${pageNum>5}">
             <a href="list.jsp?pageNum=1&pageBlock=1&searchField=${searchDto.searchField}&searchWord=${searchDto.searchWord}"><<</a>
             &nbsp;
             <a href="list.jsp?pageNum=${(pageBlock-2)*pages_per_block + 1}&pageBlock=${pageBlock-1}&searchField=${searchDto.searchField}&searchWord=${searchDto.searchWord}">
@@ -55,7 +55,7 @@
     <c:otherwise>
         <!--검색어가 없는 경우-->
         <!-- 첫번째 페이지 표시와 이전 페이지 출력하기 -->
-        <c:if test="${pageNum>pages_per_block}">
+        <c:if test="${pageNum > 5}">
             <a href="list.jsp?pageNum=1&pageBlock=1&searchField=${searchDto.searchField}&searchWord=${searchDto.searchWord}"><<</a>
             &nbsp;
             <a href="list.jsp?pageNum=${(pageBlock-2)*pages_per_block + 1}&pageBlock=${pageBlock-1}&searchField=${searchDto.searchField}&searchWord=${searchDto.searchWord}">
