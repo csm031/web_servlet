@@ -37,7 +37,7 @@ public class IOEx01 {
         *   1. 기본 입출력 객체 생성
         *   2. 보조 스트림 객체 생성
     * */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         //가장 기본적인 입출력 객체: InputStream, OutputStream
         InputStream is = System.in; //입력매체: 키보드
         OutputStream os = System.out; //출력매체 : 모니터
@@ -104,15 +104,55 @@ public class IOEx01 {
         //프로젝트 폴더 test/test2.ser 파일에 Student 객체를 출력하고 읽어오기
         //Student 클래스: name, year, handphone 을 필드로 가지고 매개변수 생성자를
         // 정의해서 객체 생성 시 필드가 초기화될 수 있도록 정의함
+      /*  FileOutputStream fos = new FileOutputStream("test/test2.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        Student student = new Student("홍길동", 3, "010-1111-1111");
+        oos.writeObject(student);
+        System.out.println("객체 출력 완료");
+        FileInputStream fis = new FileInputStream("test/test2.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Student student2 = (Student) ois.readObject();
+        System.out.println("입력객체 필드 확인:");
+        System.out.println("이름: "+student2.getName());
+        System.out.println("학년: "+student2.getYear());
+        System.out.println("연락처: "+student2.getHandphone());*/
 
+        //File 클래슬
+        /*File dir2 = new File("test/aaa");
+        dir2.mkdir();
+        File file2 = new File("test/aaa/test3.txt");
+        file2.createNewFile();
+        System.out.println("디렉토리와 파일 생성 완료");
+        */
+        //디렉토리 내에 있는 디렉토리와 파일 출력하기
+        //test디렉토리 안에 있는 내용을 가져와서 디렉토리와 파일로 각각 출력하기
+/*        File dir3 = new File("test");
+        File[] files = dir3.listFiles(); //디렉토리 안에 있는 내용을 파일객체 배열로 변환
+        for(File file : files) {
+            if(file.isDirectory()) {//파일 객체가 디렉토리인지 확인하여 boolean 값 반환
+                System.out.println("디렉토리: "+file);
+            } else {
+                System.out.println("파일: " + file + "파일크기: " + file.length() + "byte");
+            }
+        }
+        System.out.println("출력 완료");*/
 
+        //파일에 데이터 출력하기: 파일 복사 - 텍스트 파일: FileReadr/FileWriter
+        //test/aaa/test3.txt 파일에 Student.java 파일 출력하기
+        //src/main/java/human/java_ex/io_ex/Student.java
+        FileReader fr = new FileReader("src/main/java/human/java/ex/io_ex/Student.java");
+        BufferedReader br = new BufferedReader(fr);
 
+        FileWriter fw = new FileWriter("test/aaa/test3.txt", true);// true: 출력내용을 기존의 내용 뒤에 붙임
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw,true);//true: autoFlush 기능 실행
 
+        String data = null;
 
-
-
-
-
+        while ((data = br.readLine()) != null) {
+            pw.println(data);
+        }
+        System.out.println("파일 입출력 완료");
     }
 
 }
