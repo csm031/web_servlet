@@ -12,6 +12,27 @@ public class MemberDAO extends DBCP {
     public MemberDAO() {
         super();
     }
+    //아이디 중복검사
+    public int checkId(String member_id) {
+        int result = 0;
+
+        try {
+            String sql = "select count(*) from TB_MEMBER where member_id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,member_id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                result = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("id check fail");
+        }
+
+        return result;
+    }
+
+
 
     public int join(MemberDTO dto) {
         int result; // 회원가입 실패 시 결과값

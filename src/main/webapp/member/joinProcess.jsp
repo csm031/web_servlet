@@ -7,10 +7,10 @@
 <jsp:useBean id="dao" class="human.web.dao.MemberDAO"/>
 
 
-<c:set var="reslut" value="${dao.join(dto)}"/>
+<c:set var="result" value="${dao.join(dto)}"/>
 
 <c:choose>
-    <c:when test="${reslut eq 1}">
+    <c:when test="${result eq 1}">
     <c:redirect url="../index.jsp"/>
     </c:when>
     <c:otherwise>
