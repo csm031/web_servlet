@@ -13,6 +13,7 @@
           <element id="library" level="project" name="tomcat-dbcp" />
           <element id="library" level="project" name="catalina" />
           <element id="library" level="project" name="jsp-api" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
     </root>
