@@ -137,12 +137,13 @@
             let code;//서버로부터 받은 인증번호 저장
             const checkInput = $("#auth_num_input");//인증번호 입력하는 곳
 // 메일인증 버튼을 클릭한 경우
-            $("#email_auth_btn").on("click", () =>{
+            $("#email_auth_btn").on("click", function() {
                 const email = $("#email").val();//이메일주소
                 //이메일 유효성 검사: 정규표현식 이용
 
                 let regExp_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
                 if (regExp_email.test(email)) {
+
                     $.ajax({
                         type:"get",
                         url:"checkEmail.jsp?email="+email,
@@ -160,7 +161,7 @@
             });//end of email
 
             //사용자가 자신의 메일에서 인증번호를 확인한 후 인증번호 입력란에 인증번호를 입력하고 인증확인 버튼을 클릭한 경우
-            $("confirm_email_btn").on("click", () =>{
+            $("#confirm_email_btn").on("click", function() {
                 const inputCode = checkInput.val(); //인증번호 입력란에 입력된 값
                 const resultMsg = $("#mail-check-result"); //결과값을 보여주는 div태그
                 resultMsg.show();

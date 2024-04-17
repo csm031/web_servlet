@@ -70,7 +70,7 @@ public class EmailManager {
         //인증번호의 범위: 111111 <= r < 1000000: Math.random()*(1000000-111111) + 111111
         int authNumber = (int)(Math.random()*(1000000-111111)) + 111111;
 
-        String from = "네이버 메일 주소";
+        String from = "csm031@naver.com";
         String to = email;
         String subject = "회원 가입 인증 메일입니다.";
         String content = "홈페이지를 방문해주셔서 감사합니다.<br><br>"+
