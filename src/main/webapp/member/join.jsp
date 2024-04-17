@@ -18,12 +18,12 @@
             height:50px;
             margin-top:20px;
         }
-        #check_id{
+        #check_id,#email_auth_btn,#confirm_email_btn{
             width:50px;height:40px;
-            border:1px solid;border-radius:10px;border-color:gray;
+            border:1px solid;border-radius:10px;border-color: gray;
             font-size:10px;background-color:white;
         }
-        #result_checkId{
+        #result_checkId,#mail-check-result{
             display:none;
             padding-left:10px;
             font:12px Arial, Sans-serif;
@@ -116,6 +116,10 @@
                 }else if(frm_join.email.value.length == 0){
                     alert("이메일이 입력되지 않았습니다");
                     frm_join.email.focus();
+                }else if(frm_join.result_confirm.value.length == "FAIL"){ //이메일 인증에 실패한 경우
+                    //이메일 인증을 하지 않은 경우
+                    alert("이메일 인증이 필요합니다.");
+                    frm_join.email.focus();
 
                 }else{//유효성 검사를 통과한 경우
                     valid = true;
@@ -129,7 +133,52 @@
             });
 
 
-        });
+//// ======== 이메일 인증 관련 부분 ===============
+            let code;//서버로부터 받은 인증번호 저장
+            const checkInput = $("#auth_num_input");//인증번호 입력하는 곳
+// 메일인증 버튼을 클릭한 경우
+            $("#email_auth_btn").on("click", () =>{
+                const email = $("#email").val();//이메일주소
+                //이메일 유효성 검사: 정규표현식 이용
+
+                let regExp_email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+                if (regExp_email.test(email)) {
+                    $.ajax({
+                        type:"get",
+                        url:"checkEmail.jsp?email="+email,
+                        success: function (data) {
+                            checkInput.attr("disabled",false);//인증번호 입력란을 활성화시킴
+                            code = data.trim();//공백을 제거한 후 서버에서 받은 인증번호를 code에 저장
+                            alert("인증번호가 전송되었습니다.");
+                        },
+                    }); //end of ajax
+                }else {
+                    alert("입력하신 내용이 이메일 형식에 맞지 않습니다.");
+                    frm_join.email.focus();
+                }
+
+            });//end of email
+
+            //사용자가 자신의 메일에서 인증번호를 확인한 후 인증번호 입력란에 인증번호를 입력하고 인증확인 버튼을 클릭한 경우
+            $("confirm_email_btn").on("click", () =>{
+                const inputCode = checkInput.val(); //인증번호 입력란에 입력된 값
+                const resultMsg = $("#mail-check-result"); //결과값을 보여주는 div태그
+                resultMsg.show();
+                const resultEmailAuth = $("#result_confirm");//인증결과를 넘겨줄 input hidden 태그
+
+                if (inputCode == code) {
+                    resultMsg.html("정상적으로 인증되었습니다.");
+                    resultMsg.css("color", "green");
+                    resultEmailAuth.val("PASS");
+                } else {
+                    resultMsg.html("인증번호가 맞지 않습니다. 다시 확인해주세요");
+                    resultMsg.css("color", "red");
+                    resultEmailAuth.val("FAIL");
+                }
+
+            })// end of confirm_email
+
+        });//end of jQuery
 
     </script>
 
@@ -146,7 +195,19 @@
     <input type="text" name="member_name" placeholder="이름"><br>
     <input type="text" name="nickname" placeholder="닉네임"><br>
     <input type="text" name="handphone" placeholder="핸드폰번호"><br>
-    <input type="email" name="email" placeholder="이메일"><br>
+
+    <div class="div-email">
+        <input type="email" name="email" id="email" placeholder="이메일">
+        <input type="button" id="email_auth_btn" value="메일인증" >
+    </div>
+    <div class="div-email">
+        <input type="text" id="auth_num_input" placeholder="인증번호 6자리를 입력해주세요"
+               disabled = "disabled" maxlength="6">
+        <input type="button" id="confirm_email_btn" value="인증확인">
+    </div>
+    <input type="hidden" name="result_confirm" id="result_confirm">
+    <div id="mail-check-result"></div>
+
     <input type="submit" value="가입하기">
     <input type="reset" value="취소하기">
 </form>

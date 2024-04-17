@@ -64,6 +64,28 @@ public class EmailManager {
         Transport.send(msg);
     }
 
+    public String checkEmail(String email) throws AddressException, MessagingException {
+        //인증번호(6자리) 생성 및 저장: Math.random() - 0 <= r(실수, 난수) < 1
+        //1 <= r < 10 난수(random number) 발생시키기: Math.random()*9 + 1
+        //인증번호의 범위: 111111 <= r < 1000000: Math.random()*(1000000-111111) + 111111
+        int authNumber = (int)(Math.random()*(1000000-111111)) + 111111;
 
+        String from = "네이버 메일 주소";
+        String to = email;
+        String subject = "회원 가입 인증 메일입니다.";
+        String content = "홈페이지를 방문해주셔서 감사합니다.<br><br>"+
+                "인증번호: "+authNumber+
+                "<br>해당 인증번호를 인증번호 확인란에 입력해 주세요.";
+
+        EmailDTO mailInfo = new EmailDTO();
+        mailInfo.setFrom(from);
+        mailInfo.setTo(to);
+        mailInfo.setSubject(subject);
+        mailInfo.setContent(content);
+        mailInfo.setFormat("text/html;charset=UTF-8");
+        sendEmail(mailInfo);
+
+        return Integer.toString(authNumber);
+    }
 
 }

@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/board/writeProcess.jsp" value="file://$PROJECT_DIR$/src/main/webapp/board" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp_ex/ex06_el.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp_ex" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/member/join.jsp" value="file://$PROJECT_DIR$/src/main/webapp/member" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/member/loginProcess.jsp" value="file://$PROJECT_DIR$/src/main/webapp/member" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/member/updateProcess.jsp" value="file://$PROJECT_DIR$/src/main/webapp/member" />
       </map>
